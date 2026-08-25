@@ -13,6 +13,8 @@ Compared to the built-in `omarchy.lock`:
 
 Everything else — the password field, the separate fingerprint PAM flow, failure
 handling, and theming — is Omarchy's, untouched.
+<img width="1912" height="1046" alt="image" src="https://github.com/user-attachments/assets/e5c338ca-6cd4-4fd2-bd55-8e1ed687f658" />
+
 
 ## Requirements
 
