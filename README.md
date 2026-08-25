@@ -23,7 +23,7 @@ handling, and theming — is Omarchy's, untouched.
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/ommmar310-cmd/omarchy-plugin-lock-plus --enable
+omarchy plugin add https://github.com/Rockeyxx/omarchy-plugin-lock-plus --enable
 omarchy plugin disable omarchy.lock
 ```
 
