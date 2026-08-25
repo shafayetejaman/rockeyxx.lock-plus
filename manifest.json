@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "rockeyxx.lock-plus",
+  "name": "Lock Plus",
+  "version": "1.0.0",
+  "author": "Rockeyxx",
+  "description": "Omarchy lock screen with a live clock, date, and shutdown/reboot buttons. Keeps the stock password and fingerprint PAM flows.",
+  "kinds": [
+    "service"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml"
+  }
+}
