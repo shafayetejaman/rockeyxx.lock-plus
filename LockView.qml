@@ -273,6 +273,7 @@ Item {
         MouseArea {
           anchors.fill: parent
           cursorShape: Qt.PointingHandCursor
+          enabled: root.inputEnabled
           onClicked: {
             Quickshell.execDetached(["systemctl", "poweroff"])
           }
@@ -315,6 +316,7 @@ Item {
         MouseArea {
           anchors.fill: parent
           cursorShape: Qt.PointingHandCursor
+          enabled: root.inputEnabled
           onClicked: {
             Quickshell.execDetached(["systemctl", "reboot"])
           }
