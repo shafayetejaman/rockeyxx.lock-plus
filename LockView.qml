@@ -23,7 +23,9 @@ Item {
   Timer {
     interval: 1000
     repeat: true
-    running: true
+    // The clock only advances while the lock surface (or preview) is actually
+    // shown; the hidden twin upstream ticks for nothing otherwise.
+    running: root.loadBackground
     onTriggered: root.currentDate = new Date()
   }
 

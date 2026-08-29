@@ -33,6 +33,7 @@ Item {
   property string lastEventAt: ""
   property bool strandedLock: false
   property bool strandedLockResolved: false
+  property double lastWakeAt: 0
 
   readonly property bool locked: lockRequested || sessionLock.locked || sessionLock.secure
   readonly property bool authenticating: authenticatingPassword || fingerprintAuthenticating
@@ -156,7 +157,7 @@ Item {
     idleBlankTimer.stop()
     sessionLock.locked = false
     logEvent("unlocked")
-    runWake()
+    runWake(true)
   }
 
   function armBlankTimer() {
@@ -164,7 +165,13 @@ Item {
     idleBlankTimer.restart()
   }
 
-  function runWake() {
+  function runWake(force) {
+    // Mouse moves and keystrokes over the lock surface each call this; spawn
+    // the wake helper at most every half-second unless forced (unlock), so a
+    // normal unlock gesture doesn't fork a process on every input event.
+    var now = Date.now()
+    if (!force && now - root.lastWakeAt < 500) return
+    root.lastWakeAt = now
     if (!wakeProcess.running) wakeProcess.running = true
     if (lockRequested) armBlankTimer()
   }
@@ -257,7 +264,7 @@ Item {
         sessionLockStabilizeTimer.stop()
         pendingSessionLockTimer.stop()
         root.resetAuthenticationState()
-        root.runWake()
+        root.runWake(true)
       }
     }
 
