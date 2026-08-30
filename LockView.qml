@@ -141,7 +141,7 @@ Item {
 
       Text {
         Layout.alignment: Qt.AlignHCenter
-        text: Qt.formatDateTime(root.currentDate, "HH:mm")
+        text: Qt.formatDateTime(root.currentDate, "h:mm AP")
         color: Color.lock.text
         font.family: Style.font.family
         font.pixelSize: Math.round(Style.font.heading * 3.2)
