@@ -253,7 +253,7 @@ Item {
       }
     }
 
-    // Shutdown and Reboot action buttons anchored to bottom center
+    // Shutdown, Sleep and Reboot action buttons anchored to bottom center
     RowLayout {
       anchors.bottom: parent.bottom
       anchors.bottomMargin: Style.space(48)
@@ -296,6 +296,49 @@ Item {
           Text {
             text: "Shutdown"
             color: shutdownHover.hovered ? Color.urgent : Color.lock.text
+            font.family: Style.font.family
+            font.pixelSize: Style.font.body
+            font.bold: true
+          }
+        }
+      }
+
+      Rectangle {
+        id: sleepBtn
+        implicitWidth: sleepLayout.implicitWidth + Style.space(24)
+        implicitHeight: Style.space(38)
+        radius: Style.cornerRadius
+        color: sleepHover.hovered ? Color.lock.borderActive : Color.lock.background
+        border.color: sleepHover.hovered ? Color.accent : Color.lock.borderActive
+        border.width: 2
+        opacity: sleepHover.hovered ? 1.0 : 0.85
+
+        HoverHandler { id: sleepHover }
+
+        MouseArea {
+          anchors.fill: parent
+          cursorShape: Qt.PointingHandCursor
+          enabled: root.inputEnabled
+          onClicked: {
+            Quickshell.execDetached(["systemctl", "suspend"])
+          }
+        }
+
+        RowLayout {
+          id: sleepLayout
+          anchors.centerIn: parent
+          spacing: Style.space(8)
+
+          Text {
+            text: ""
+            color: sleepHover.hovered ? Color.accent : Color.lock.text
+            font.family: Style.font.family
+            font.pixelSize: Math.round(Style.font.heading * 0.9)
+          }
+
+          Text {
+            text: "Sleep"
+            color: sleepHover.hovered ? Color.accent : Color.lock.text
             font.family: Style.font.family
             font.pixelSize: Style.font.body
             font.bold: true
